@@ -1,10 +1,7 @@
-Read the file called DISCLAIMER.
+### 编译apue
 
-On Freebsd, type "gmake".
-On other platforms, type "make" (as long as this is gnu make).
-
-For FAQs, updated source code, and the lost chapter, see http://www.apuebook.com.
-Please direct questions, suggestions, and bug reports to sar@apuebook.com.
-
-Steve Rago
-January 2013
+1. 安装libbsd与libmd：https://libbsd.freedesktop.org/wiki/
+2. `db/Makefile`，12行，删除 `-Wl,-dylib`
+3. `filedir/devrdev.c`，添加头文件 `#include <sys/sysmacros.h>`
+4. `buf.c` 98 行和 104 行的 `_flag` 修改为 `_flags`
+   `buf.c` 111 行 `return(fp->_base - fp->_ptr);` 修改为 `return(fp->_IO_buf_end - fp->_IO_buf_base);`
